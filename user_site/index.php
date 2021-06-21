@@ -9,9 +9,9 @@
     <title>BUSCA PEV</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@300;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/busca_pev/styles/main.css">
-    <link rel="stylesheet" href="/busca_pev/styles/responsive.css">
-    <link rel="stylesheet" href="/busca_pev/styles/home.css">
+    <link rel="stylesheet" href="/user_site/styles/main.css">
+    <link rel="stylesheet" href="/user_site/styles/responsive.css">
+    <link rel="stylesheet" href="/user_site/styles/home.css">
 
 </head>
 
@@ -21,7 +21,7 @@
 
         <div class="content">
             <header>
-                <img src="/busca_pev/assets/logo.svg" alt="Logomarca">
+                <img src="/user_site/assets/logo.svg" alt="Logomarca">
                 <a href="#">
                     <span>
                     </span>

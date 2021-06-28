@@ -3,15 +3,9 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include 'views/partials/head_commons.php'; ?>
 
-    <title>BUSCA PEV</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@300;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/user_site/styles/main.css">
-    <link rel="stylesheet" href="/user_site/styles/responsive.css">
-    <link rel="stylesheet" href="/user_site/styles/home.css">
+    <link rel="stylesheet" href="public/styles/home.css">
 
 </head>
 
@@ -20,19 +14,22 @@
     <div id="page-home">
 
         <div class="content">
+
             <header>
-                <img src="/user_site/assets/logo.svg" alt="Logomarca">
-                <a href="#">
+                <img src="/user_site/public/assets/logo.svg" alt="Logomarca">
+                <a href="views/login.php">
                     <span>
                     </span>
-                    Entrar / Se cadastrar
+                    Entrar
                 </a>
             </header>
+
             <main>
                 <h1>PEV</h1>
                 <p>Pontos de Entrega Voluntária de entulho e outros materiais recicláveis</p>
-                <a href="#"><span></span><strong>Pesquisar PEVs</strong></a>
+                <a href="views/pevs.php"><span></span><strong>Ver PEVs</strong></a>
             </main>
+
         </div>
 
     </div>

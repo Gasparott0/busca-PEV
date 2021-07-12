@@ -6,6 +6,10 @@
     <?php include 'partials/head_commons.php'; ?>
 
     <link rel="stylesheet" href="/user_site/public/styles/login.css">
+    <link rel="stylesheet" href="/user_site/public/styles/modal.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/user_site/public/scripts/ajax.js"></script>
 
 </head>
 
@@ -17,7 +21,7 @@
 
         <div class="forms">
 
-            <form action="#" method="POST">
+            <form id="form-signUp">
                 <h1>Cadastro</h1>
                 <fieldset>
                     <div class="field-group">
@@ -43,7 +47,7 @@
                         </div>
                     </div>
                 </fieldset>
-                <button type="submit">Cadastrar</button>
+                <button type="button" id="btn-signUp">Cadastrar</button>
             </form>
 
             <form action="#" method="POST">
@@ -67,7 +71,9 @@
         </div>
 
     </div>
-
+        
+    <?php include 'partials/user-created.php'; ?>
+    
 </body>
 
 </html>

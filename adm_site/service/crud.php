@@ -8,7 +8,7 @@ if(count($_POST)>0){
 		$lastname=$_POST['lastname'];
 		$email=$_POST['email'];
 		$phone=$_POST['phone'];
-		$password="buscapev";
+		$password=md5("buscapev");
 		$sql = "INSERT INTO PEV_MODERATOR(NAME, LAST_NAME, EMAIL, PHONE, PASSWORD) 
 		VALUES ('$name', '$lastname', '$email', '$phone', '$password')";
 		if (mysqli_query($conn, $sql)) {

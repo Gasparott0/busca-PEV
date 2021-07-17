@@ -28,6 +28,24 @@
 
 <body>
 	<div class="container">
+
+		<div id="operation" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Operação</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p id="message"></p>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Ok">
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<p id="success"></p>
 
 		<div class="header">
@@ -108,7 +126,7 @@
 	<div id="addModeratorModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form id="moderator_form">
+				<form action="service/crud.php" method="POST">
 					<div class="modal-header">
 						<h4 class="modal-title">Adicionar Moderador</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -134,7 +152,7 @@
 					<div class="modal-footer">
 						<input type="hidden" value="1" name="type">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<button type="button" class="btn btn-success" id="btn-add">Adicionar</button>
+						<input type="submit" class="btn btn-success" value="Adicionar">
 					</div>
 				</form>
 			</div>
@@ -144,7 +162,7 @@
 	<div id="editModeratorModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form id="update_form">
+				<form action="service/crud.php" method="POST">
 					<div class="modal-header">
 						<h4 class="modal-title">Editar moderador</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -171,7 +189,7 @@
 					<div class="modal-footer">
 						<input type="hidden" value="2" name="type">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<button type="button" class="btn btn-info" id="update">Atualizar</button>
+						<input type="submit" class="btn btn-success" value="Atualizar">
 					</div>
 				</form>
 			</div>
@@ -181,7 +199,7 @@
 	<div id="deleteModeratorModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+				<form action="service/crud.php" method="POST">
 					<div class="modal-header">
 						<h4 class="modal-title">Excluir Moderador</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -192,8 +210,9 @@
 						<p class="text-warning"><small>Esta ação não pode ser desfeita.</small></p>
 					</div>
 					<div class="modal-footer">
+						<input type="hidden" value="3" name="type">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<button type="button" class="btn btn-danger" id="delete">Excluir</button>
+						<input type="submit" class="btn btn-danger" value="Excluir">
 					</div>
 				</form>
 			</div>

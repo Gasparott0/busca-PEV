@@ -1,20 +1,3 @@
-$(document).on('click', '#btn-add', function(e) {
-    var data = $("#moderator_form").serialize();
-    $.ajax({
-        data: data,
-        type: "post",
-        url: "service/crud.php",
-        success: function(dataResult) {
-            var dataResult = JSON.parse(dataResult);
-            if (dataResult.statusCode == 200) {
-                $('#addModeratorModal').modal('hide');
-                alert('Moderador incluido com sucesso!');
-                location.reload();
-            }
-        }
-    });
-});
-
 $(document).on('click', '.update', function(e) {
     var id = $(this).attr("data-id");
     var name = $(this).attr("data-name");
@@ -28,44 +11,10 @@ $(document).on('click', '.update', function(e) {
     $('#phone_u').val(phone);
 });
 
-$(document).on('click', '#update', function(e) {
-    var data = $("#update_form").serialize();
-    $.ajax({
-        data: data,
-        type: "post",
-        url: "service/crud.php",
-        success: function(dataResult) {
-            var dataResult = JSON.parse(dataResult);
-            if (dataResult.statusCode == 200) {
-                $('#editModeratorModal').modal('hide');
-                alert('Moderador atualizado com sucesso!');
-                location.reload();
-            }
-        }
-    });
-});
-
 $(document).on("click", ".delete", function() {
     var id = $(this).attr("data-id");
     $('#id_d').val(id);
 
-});
-
-$(document).on("click", "#delete", function() {
-    $.ajax({
-        url: "service/crud.php",
-        type: "POST",
-        cache: false,
-        data: {
-            type: 3,
-            id: $("#id_d").val()
-        },
-        success: function(dataResult) {
-            $('#deleteModeratorModal').modal('hide');
-            $("#" + dataResult).remove();
-
-        }
-    });
 });
 
 $(document).on("click", "#delete_multiple", function() {
@@ -101,6 +50,14 @@ $(document).on("click", "#delete_multiple", function() {
 });
 
 $(document).ready(function() {
+    var searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.has('message')) {
+        var message = searchParams.get('message');
+        var paragraph = document.getElementById("message");
+        paragraph.textContent = message;
+        $('#operation').modal("show");
+        searchParams.delete('message');
+    }
     $('[data-toggle="tooltip"]').tooltip();
     var checkbox = $('table tbody input[type="checkbox"]');
     $("#selectAll").click(function() {

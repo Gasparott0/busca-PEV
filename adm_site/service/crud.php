@@ -2,6 +2,8 @@
 
 	include 'database.php';
 
+	session_start();
+
 	if(count($_POST)>0){
 
 		if($_POST['type']==1){
@@ -13,10 +15,12 @@
 			$sql = "INSERT INTO PEV_MODERATOR(NAME, LAST_NAME, EMAIL, PHONE, PASSWORD) 
 			VALUES ('$name', '$lastname', '$email', '$phone', '$password')";
 			if (mysqli_query($conn, $sql)) {
-				echo json_encode(array("statusCode"=>200));
+				$message = "Inserção realizada com sucesso";
+        		header("Location: ../index.php?message=$message");
 			} 
 			else {
-				echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+				$message = "Ocorreu um problema! ".mysqli_error($conn);
+        		header("Location: ../index.php?message=$message");
 			}
 			mysqli_close($conn);
 		}
@@ -29,10 +33,12 @@
 			$phone=$_POST['phone'];
 			$sql = "UPDATE PEV_MODERATOR SET NAME='$name', LAST_NAME='$lastname', EMAIL='$email', PHONE='$phone' WHERE ID=$id";
 			if (mysqli_query($conn, $sql)) {
-				echo json_encode(array("statusCode"=>200));
+				$message = "Atualização realizada com sucesso";
+        		header("Location: ../index.php?message=$message");
 			} 
 			else {
-				echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+				$message = "Ocorreu um problema! ".mysqli_error($conn);
+        		header("Location: ../index.php?message=$message");
 			}
 			mysqli_close($conn);
 		}
@@ -41,10 +47,12 @@
 			$id=$_POST['id'];
 			$sql = "DELETE FROM PEV_MODERATOR WHERE ID=$id ";
 			if (mysqli_query($conn, $sql)) {
-				echo $id;
+				$message = "Exclusão realizada com sucesso";
+        		header("Location: ../index.php?message=$message");
 			} 
 			else {
-				echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+				$message = "Ocorreu um problema! ".mysqli_error($conn);
+        		header("Location: ../index.php?message=$message");
 			}
 			mysqli_close($conn);
 		}
@@ -56,7 +64,8 @@
 				echo $id;
 			} 
 			else {
-				echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+				$message = "Ocorreu um problema! ".mysqli_error($conn);
+        		header("Location: ../index.php?message=$message");
 			}
 			mysqli_close($conn);
 		}

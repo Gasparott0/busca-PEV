@@ -10,12 +10,11 @@ $(document).on('click', '#btn-add', function(e) {
                 $('#addModeratorModal').modal('hide');
                 alert('Moderador incluido com sucesso!');
                 location.reload();
-            } else if (dataResult.statusCode == 201) {
-                alert(dataResult);
             }
         }
     });
 });
+
 $(document).on('click', '.update', function(e) {
     var id = $(this).attr("data-id");
     var name = $(this).attr("data-name");
@@ -41,17 +40,17 @@ $(document).on('click', '#update', function(e) {
                 $('#editModeratorModal').modal('hide');
                 alert('Moderador atualizado com sucesso!');
                 location.reload();
-            } else if (dataResult.statusCode == 201) {
-                alert(dataResult);
             }
         }
     });
 });
+
 $(document).on("click", ".delete", function() {
     var id = $(this).attr("data-id");
     $('#id_d').val(id);
 
 });
+
 $(document).on("click", "#delete", function() {
     $.ajax({
         url: "service/crud.php",
@@ -68,6 +67,7 @@ $(document).on("click", "#delete", function() {
         }
     });
 });
+
 $(document).on("click", "#delete_multiple", function() {
     var user = [];
     $(".user_checkbox:checked").each(function() {
@@ -99,6 +99,7 @@ $(document).on("click", "#delete_multiple", function() {
         }
     }
 });
+
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
     var checkbox = $('table tbody input[type="checkbox"]');

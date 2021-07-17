@@ -4,14 +4,8 @@
 
     session_start();
 
-    $user_name = isset($_POST["user_name"]) ? addslashes(trim($_POST["user_name"])) : FALSE;
-    $password = isset($_POST["password"]) ? md5(trim($_POST["password"])) : FALSE;
-
-    if(!$user_name || !$password)
-    {
-        echo "Você deve digitar sua password e user_name!";
-        exit;
-    }
+    $user_name = addslashes(trim($_POST["user_name"]));
+    $password = md5(trim($_POST["password"]));
 
     $result = mysqli_query($conn, "SELECT * FROM PEV_ADMIN WHERE USER_NAME = '" . $user_name . "'");
 
@@ -24,7 +18,13 @@
             $_SESSION["user_id"]= $data["ID"];
             $_SESSION["user_name"] = stripslashes($data["USER_NAME"]);
             header("Location: ../index.php");
+        } else {
+            $_SESSION["login_response"]= "A senha digitada é inválida!";
+            header("Location: ../login.php");
         }
+    } else {
+        $_SESSION["login_response"]= "A usuário digitado é inválido!";
+        header("Location: ../login.php");
     }
 
     mysqli_close($conn);

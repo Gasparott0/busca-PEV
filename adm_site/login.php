@@ -18,7 +18,7 @@
 
     <h1>BUSCAPEV - Administração</h1>
 
-    <form action="service/login.php" method="POST">
+    <form action="service/login_service.php" method="POST">
 
         <input type="text" id="user_name" name="user_name" placeholder="Administrador" required />
 
@@ -27,6 +27,16 @@
         <input type="submit" id="submit" value="Entrar">
 
     </form>
+
+    <?php
+
+        session_start();
+
+        if(isset($_SESSION["login_response"])) {
+            echo "<p>".$_SESSION["login_response"]."</p";
+        }
+
+    ?>
 
 </body>
 

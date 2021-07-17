@@ -1,13 +1,7 @@
 <?php
 
+	require 'service/check_login.php';
 	require 'service/database.php';
-
-	session_start();
-
-	if(!isset($_SESSION["user_id"]) || !isset($_SESSION["user_name"])) {
-		header("Location: login.html");
-		exit;
-	}
 
 ?>
 <!DOCTYPE html>

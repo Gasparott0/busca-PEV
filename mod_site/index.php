@@ -1,0 +1,230 @@
+<?php
+
+	require 'service/check_login.php';
+	require 'service/database.php';
+
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="script/crud.js"></script>
+	
+	<title>Moderador</title>
+
+</head>
+
+<body>
+	<div class="container">
+
+		<div id="operation" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Operação</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p id="message"></p>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Ok">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<p id="success"></p>
+
+		<div class="header">
+
+			<div>
+				<?php
+					echo "<p>Bem vindo, ".$_SESSION["user_name"]."!</p>";
+				?>
+				
+				<a href="change_password.php">Alterar senha</a>
+			</div>
+			
+			<a href="service/exit.php"><i class="material-icons">&#xe879;</i></a>
+	
+		</div>
+
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2>Gerenciador de <b>PEV's!</b></h2>
+					</div>
+					<div class="col-sm-6">
+						<a href="#addPevModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar PEV</span></a>
+						<a href="JavaScript:void(0);" class="btn btn-danger" id="delete_multiple"><i class="material-icons">&#xE15C;</i> <span>Excluir</span></a>
+					</div>
+				</div>
+			</div>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+						</th>
+						<th>NÚMERO</th>
+						<th>CEP</th>
+						<th>RUA</th>
+						<th>BAIRRO</th>
+						<th>NÚMERO</th>
+						<th>AÇÃO</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<?php
+					$result = mysqli_query($conn, "SELECT * FROM PEV");
+					$i = 1;
+					while ($row = mysqli_fetch_array($result)) {
+					?>
+						<tr id="<?php echo $row["ID"]; ?>">
+							<td>
+								<span class="custom-checkbox">
+									<input type="checkbox" class="user_checkbox" data-user-id="<?php echo $row["ID"]; ?>">
+									<label for="checkbox2"></label>
+								</span>
+							</td>
+							<td><?php echo $i; ?></td>
+							<td><?php echo $row["CEP"]; ?></td>
+							<td><?php echo $row["STREET"]; ?></td>
+							<td><?php echo $row["DISTRICT"]; ?></td>
+							<td><?php echo $row["NUMBER"]; ?></td>
+							<td>
+								<a href="#editPevModal" class="edit" data-toggle="modal">
+									<i class="material-icons update" data-toggle="tooltip" data-id="<?php echo $row["ID"]; ?>" data-cep="<?php echo $row["CEP"]; ?>" data-street="<?php echo $row["STREET"]; ?>" data-district="<?php echo $row["DISTRICT"]; ?>" data-number="<?php echo $row["NUMBER"]; ?>" title="Edit">&#xE254;</i>
+								</a>
+								<a href="#deletePevModal" class="delete" data-id="<?php echo $row["ID"]; ?>" data-toggle="modal">
+									<i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+								</a>
+							</td>
+						</tr>
+					<?php
+						$i++;
+					}
+					?>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+	<!-- Add -->
+	<div id="addPevModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="service/crud.php" method="POST">
+					<div class="modal-header">
+						<h4 class="modal-title">Adicionar PEV</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label>CEP</label>
+							<input type="text" id="cep" name="cep" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>RUA</label>
+							<input type="text" id="street" name="street" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>BAIRRO</label>
+							<input type="text" id="district" name="district" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>NÚMERO</label>
+							<input type="text" id="number" name="number" class="form-control" required>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input type="hidden" value="1" name="type">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="submit" class="btn btn-success" value="Adicionar">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Edit -->
+	<div id="editPevModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="service/crud.php" method="POST">
+					<div class="modal-header">
+						<h4 class="modal-title">Editar PEV</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<input type="hidden" id="id_u" name="id" class="form-control" required>
+						<div class="form-group">
+							<label>CEP</label>
+							<input type="text" id="cep_u" name="cep" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>RUA</label>
+							<input type="text" id="street_u" name="street" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>BAIRRO</label>
+							<input type="text" id="district_u" name="district" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>TELEFONE</label>
+							<input type="text" id="number_u" name="number" class="form-control" required>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input type="hidden" value="2" name="type">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="submit" class="btn btn-success" value="Atualizar">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Delete -->
+	<div id="deletePevModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="service/crud.php" method="POST">
+					<div class="modal-header">
+						<h4 class="modal-title">Excluir PEV</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<input type="hidden" id="id_d" name="id" class="form-control">
+						<p>Tem certeza que deseja excluir esse PEV?</p>
+						<p class="text-warning"><small>Esta ação não pode ser desfeita.</small></p>
+					</div>
+					<div class="modal-footer">
+						<input type="hidden" value="3" name="type">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="submit" class="btn btn-danger" value="Excluir">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

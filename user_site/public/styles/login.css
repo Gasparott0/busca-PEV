@@ -101,7 +101,7 @@ form .field-group .field+.field {
     margin-left: 24px;
 }
 
-form button {
+form .submit {
     width: 100%;
     height: 56px;
     background-color: var(--primary-color);
@@ -112,9 +112,10 @@ form button {
     border: 0;
     margin-top: 40px;
     transition: background-color 400;
+    cursor: pointer;
 }
 
-form button:hover {
+form .submit:hover {
     background-color: #2fb86e;
 }
 

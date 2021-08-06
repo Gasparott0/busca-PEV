@@ -24,12 +24,21 @@
     display: flex;
     color: var(--title-color);
     font-weight: 700;
+    margin: 0px;
 }
 
-#page-home header a span {
+#page-home header a .login {
     margin-right: 16px;
     display: flex;
     background-image: url('/user_site/public/assets/log-in.svg');
+    width: 20px;
+    height: 20px;
+}
+
+#page-home header a .logout {
+    margin-right: 16px;
+    display: flex;
+    background-image: url('/user_site/public/assets/log-out.svg');
     width: 20px;
     height: 20px;
 }

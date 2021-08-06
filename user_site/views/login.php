@@ -21,7 +21,7 @@
 
         <div class="forms">
 
-            <form id="form-signUp">
+            <form action="../service/register_user.php" method="POST">
                 <h1>Cadastro</h1>
                 <fieldset>
                     <div class="field-group">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="field">
                             <label for="lastName">Sobrenome:</label>
-                            <input type="text" name="lastName" required>
+                            <input type="text" name="last_name" required>
                         </div>
                     </div>
                     <div class="field-group">
@@ -46,11 +46,21 @@
                             <input type="password" name="password" required>
                         </div>
                     </div>
+                    <?php
+
+                        session_start();
+
+                        if(isset($_SESSION["register_response"])) {
+                            echo '<p>'.$_SESSION["register_response"].'</p>';
+                            unset($_SESSION['register_response']);
+                        }
+
+                    ?>
                 </fieldset>
-                <button type="button" id="btn-signUp">Cadastrar</button>
+                <input type="submit" class="submit" value="Cadastrar">
             </form>
 
-            <form action="#" method="POST">
+            <form action="../service/login_user.php" method="POST">
                 <h1>Login</h1>
                 <fieldset>
                     <div class="field-group">
@@ -65,14 +75,20 @@
                             <input type="password" name="password" required>
                         </div>
                     </div>
+                    <?php
+
+                        if(isset($_SESSION["login_response"])) {
+                            echo '<p>'.$_SESSION["login_response"].'</p>';
+                            unset($_SESSION['login_response']);
+                        }
+
+                    ?>
                 </fieldset>
-                <button type="submit">Entrar</button>
+                <input type="submit" class="submit" value="Entrar">
             </form>
         </div>
 
     </div>
-        
-    <?php include 'partials/user-created.php'; ?>
     
 </body>
 

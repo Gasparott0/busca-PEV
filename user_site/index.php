@@ -5,7 +5,9 @@
 
     <?php include 'views/partials/head_commons.php'; ?>
 
-    <link rel="stylesheet" href="public/styles/home.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/user_site/public/styles/home.css">
+    <link rel="stylesheet" href="/user_site/public/styles/modal.css">
 
 </head>
 
@@ -16,23 +18,52 @@
         <div class="content">
 
             <header>
+                
                 <img src="/user_site/public/assets/logo.svg" alt="Logomarca">
-                <a href="views/login.php">
-                    <span>
-                    </span>
-                    Entrar
-                </a>
+                
+                <?php
+
+                    session_start();
+
+                    if(isset($_SESSION["user_name"])) {                        
+                        echo "<a href=\"/user_site/service/exit.php\">
+                                    <span class=\"logout\">
+                                    </span>
+                                    Sair
+                                </a>";
+                    } else {
+                        echo    "<a href=\"/user_site/views/login.php\">
+                                    <span class=\"login\">
+                                    </span>
+                                    Entrar
+                                </a>";
+                    }
+
+                ?>
+                
+
             </header>
 
             <main>
                 <h1>PEV</h1>
                 <p>Pontos de Entrega Voluntária de entulho e outros materiais recicláveis</p>
-                <a href="views/pevs.php"><span></span><strong>Ver PEVs</strong></a>
+                <a href="/user_site/views/pevs.php"><span></span><strong>Ver PEVs</strong></a>
             </main>
 
         </div>
 
     </div>
+
+      
+    <?php
+
+        if(isset($_SESSION["register_response"]) && $_SESSION["register_response"] == "SUCCESS") {
+            include 'views/partials/user_created.php';
+            unset($_SESSION['register_response']);
+            exit;
+        }
+
+    ?>
 
 </body>
 

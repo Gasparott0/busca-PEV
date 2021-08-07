@@ -2,9 +2,9 @@
 <html lang="pt_br">
 
 <?php
-require "database.php";
+require "../service/database.php";
 session_start();
-$query = "SELECT CEP, STREET, DISTRICT FROM PEV";
+$query = "SELECT * FROM PEV";
 $resultado = mysqli_query($conn, $query) or die(mysqli_error($conn));
 ?>
 
@@ -25,23 +25,25 @@ $resultado = mysqli_query($conn, $query) or die(mysqli_error($conn));
         <main>
 
             <?php
-            echo "<h4><strong>" . mysqli_num_rows($resultado) . " PEV(s)</strong> encontrado(s)</h4>";
             if (mysqli_num_rows($resultado) > 0) {
+                echo "<h4><strong>" . mysqli_num_rows($resultado) . " PEV(s)</strong> encontrado(s)</h4>";
+                echo "<div class=cards>";
                 while ($row = mysqli_fetch_assoc($resultado)) {
-                    echo "<div class=cards>";
 
                     echo "<div class=card>";
 
-                    echo "<img src=https://www.google.com.br/maps/place/" . $row["STREET"] . "alt=Teste>";
+                    $str = str_replace(' ', '+', $row["STREET"]);
+                    echo "<img src=https://maps.googleapis.com/maps/api/staticmap?center=" . $str . "," . $row["NUMBER"] . "&zoom=17&size=600x400&key=AIzaSyCK5oprNj7f-nyzrgnYith-Sj0_XjhO0TU alt=Teste>";
 
                     echo "<h1>" . $row["DISTRICT"] . "</h1>";
 
-                    echo "<h3>" . $row["STREET"] . ", " . $row["CEP"] . "</h3>";
+                    echo "<h3>" . $row["STREET"] . "</h3>";
 
-                    echo "</div>";
+                    echo "<p>Número: " . $row["NUMBER"] . ", CEP: " . $row["CEP"] . "</p>";
 
                     echo "</div>";
                 }
+                echo "</div>";
             }
             ?>
 

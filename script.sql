@@ -33,5 +33,5 @@ CREATE TABLE PEV(
     NUMBER VARCHAR(255) NOT NULL
 );
 
-INSERT INTO PEV (CEP, STREET, DISTRICT)
-VALUES ('13060-486','rua ângela stecca pelegrini, 137', 'campinas');
+INSERT INTO PEV (CEP, STREET, DISTRICT, NUMBER)
+VALUES ('13060-486','rua ângela stecca pelegrini', 'bairro fodase', '137');

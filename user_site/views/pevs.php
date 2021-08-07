@@ -33,7 +33,7 @@ $resultado = mysqli_query($conn, $query) or die(mysqli_error($conn));
                     echo "<div class=card>";
 
                     $str = str_replace(' ', '+', $row["STREET"]);
-                    echo "<img src=https://maps.googleapis.com/maps/api/staticmap?center=" . $str . "," . $row["NUMBER"] . "&zoom=17&size=600x400&key=AIzaSyCK5oprNj7f-nyzrgnYith-Sj0_XjhO0TU alt=Teste>";
+                    echo "<img src=https://maps.googleapis.com/maps/api/staticmap?center=" . $str . "," . $row["NUMBER"] . "&zoom=17&size=600x400&key=Xcwcc7ITQ_IhWM3E-aqX25Zn65Q= alt=Teste>";
 
                     echo "<h1>" . $row["DISTRICT"] . "</h1>";
 

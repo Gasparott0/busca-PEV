@@ -7,7 +7,7 @@
             session_start();
 
             if(isset($_SESSION["user_name"]))                       
-                echo "<p>| Bem vindo, " . $_SESSION["user_name"] . "</p>";
+                echo "<p>| Bem vindo, " . $_SESSION["user_name"] . "!</p>";
 
         ?>
 

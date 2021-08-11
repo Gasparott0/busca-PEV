@@ -19,11 +19,10 @@
 
             <header>
                 
-                <img src="/user_site/public/assets/logo.svg" alt="Logomarca">
                 
                 <?php
-
-                    session_start();
+                    
+                    include 'views/partials/logo.php';
 
                     if(isset($_SESSION["user_name"])) {                        
                         echo "<a href=\"/user_site/service/exit.php\">

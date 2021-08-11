@@ -48,8 +48,6 @@
                     </div>
                     <?php
 
-                        session_start();
-
                         if(isset($_SESSION["register_response"])) {
                             echo '<p>'.$_SESSION["register_response"].'</p>';
                             unset($_SESSION['register_response']);

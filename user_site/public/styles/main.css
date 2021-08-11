@@ -35,3 +35,8 @@ h6 {
 button {
     cursor: pointer;
 }
+
+.logo {
+    display: flex;
+    align-items: center;
+}

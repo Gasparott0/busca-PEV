@@ -1,6 +1,6 @@
 <header>
     
-    <img src="/user_site/public/assets/logo.svg" alt="Logomarca">
+    <?php include 'logo.php'; ?>
 
     <a href="/user_site/index.php">
         <span></span>

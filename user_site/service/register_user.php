@@ -16,10 +16,10 @@ if (mysqli_query($conn, $sql)) {
 	$_SESSION["user_name"] = stripslashes($data["NAME"]);
 	$_SESSION["user_last_name"] = stripslashes($data["LAST_NAME"]);
 	$_SESSION["register_response"] = "SUCCESS";
-	header("Location: /user_site/index.php");
+	header("Location: ../index.php");
 } else {
 	$_SESSION["register_response"] = "Já existe usuário com esse email";
-    header("Location: /user_site/views/login.php");
+    header("Location: ../views/login.php");
 }
 
 mysqli_close($conn);

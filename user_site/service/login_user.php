@@ -20,11 +20,11 @@
             $_SESSION["login_response"]= "SUCCESS";
             header("Location: ../index.php");
         } else {
-            $_SESSION["login_response"]= "A senha digitada é inválida!";
+            $_SESSION["login_response"]= "Usuário ou senha inválida!";
             header("Location: ../views/login.php");
         }
     } else {
-        $_SESSION["login_response"]= "A usuário digitado é inválido!";
+        $_SESSION["login_response"]= "Usuário ou senha inválida!";
         header("Location: ../views/login.php");
     }
 

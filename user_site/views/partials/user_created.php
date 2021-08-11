@@ -4,6 +4,6 @@
     <h1>Cadastro concluído</h1>
     <p>Agora você pode aproveitar o site!</p>
 
-    <button><a href="/user_site/index.php">Fechar</a></button>
+    <button href="/user_site/index.php"><a>Fechar</a></button>
 
 </div>
